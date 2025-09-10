@@ -4,7 +4,7 @@ import DashboardView from "@/components/dashboard/dashboard-view";
 import { getDashboardData } from "@/lib/actions";
 
 export default async function DashboardPage() {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     const {
         data: { user },

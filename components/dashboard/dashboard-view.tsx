@@ -6,7 +6,7 @@ import SearchBar from "./search-bar";
 import CategorySection from "./category-section";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
-import { Plus, Settings, MoreHorizontal, Calendar } from "lucide-react";
+import { Settings, MoreHorizontal, Calendar } from "lucide-react";
 
 interface DashboardViewProps {
   data: DashboardData;
@@ -19,7 +19,6 @@ export default function DashboardView({ data }: DashboardViewProps) {
 
   const { categories, availableWidgets } = data;
 
-  // Calculate total widgets across all categories
   const totalWidgets = categories.reduce(
     (sum, category) => sum + category.user_widgets.filter(w => w.is_visible).length,
     0
@@ -32,15 +31,11 @@ export default function DashboardView({ data }: DashboardViewProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Breadcrumb */}
           <nav className="text-sm text-gray-500">
             <span>Home</span> <span className="mx-2">›</span> <span className="text-gray-900">Dashboard V2</span>
           </nav>
-          
-          {/* Top Controls */}
           <div className="flex items-center gap-4">
             <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
             <button className="p-2 text-gray-400 hover:text-gray-600">
@@ -60,7 +55,6 @@ export default function DashboardView({ data }: DashboardViewProps) {
       </div>
 
       <div className="px-6 py-6">
-        {/* Dashboard Title */}
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-semibold text-gray-900">CNAPP Dashboard</h1>
           <div className="flex items-center gap-3">
@@ -77,7 +71,6 @@ export default function DashboardView({ data }: DashboardViewProps) {
           </div>
         </div>
 
-        {/* Dynamic Categories */}
         <div className="space-y-8">
           {categories.length === 0 ? (
             <div className="text-center py-12">
